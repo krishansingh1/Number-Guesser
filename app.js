@@ -32,15 +32,28 @@
     let guess=parseInt(guessInput.value);
     //console.log(guess);
     //Validate
-     if(guess === NAN || guess < min || guess > max) {
+     if(isNaN(guess) || guess < min || guess > max) {
        
-      setMessage('Please enter a number between ${min} and ${max}')
+      setMessage(`Please enter a number between ${min} and ${max}`, 'red');
      }
+
+     //Check if won
+      if(guess===winningNum){
+      //Disable input
+       guessInput.disabled = true;
+        //Change border color
+         guessInput.style.borderColor = 'green';
+        //Set Message
+          setMessage(`${winningNum} is correct, YOU WIN!`, 'green');
+      } else{
+
+      }
+
    });   
 
    //Set message
-   function setMessage(msg) {
-       
-     
+   function setMessage(msg,color) { 
+     message.style.color = color;
+     message.textContent = msg;
    }
 
